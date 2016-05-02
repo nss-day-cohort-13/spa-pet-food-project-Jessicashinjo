@@ -23,6 +23,7 @@ myRequest.open("GET", "dogFood.json");
 myRequest.send();
 
 
+//Insert Dog Food cards into DOM
 function insertCardInfoToDom (bubbles) {
   var placeholderDiv = document.getElementById("mainBody");
   for (var i = 0; i < bubbles.length; i++) {
@@ -40,19 +41,37 @@ function insertCardInfoToDom (bubbles) {
   }
 }
 
+//Make dog food visible and hide cat food
+var dogFoodLink = document.getElementById("link-dog");
+var dogFoodView = document.getElementById("dog-view");
 
-    // <article class="card">
-    //   <h3 class="brand">Blue Buffalo</h3>
-    //   <section class="breeds">
-    //     <h5>Specially designed for these breeds:</h5>
-    //     <p>plain, orange, and black</p>
-    //   </section>
-    //   <section class="type">
-    //     <h5>Food type:</h5>
-    //     <p>puppy</p>
-    //   </section>
-    //   <section id="volPrice">
-    //     <p class="volume">24oz</p>
-    //     <p class="price">$19.99</p>
-    //   </section>
-    // </article>
+
+dogFoodLink.addEventListener("click", function(event) {
+  event.preventDefault();
+  dogFoodView.classList.add("hidden");
+  catFoodView.classList.add("hidden");
+
+  dogFoodView.classList.add("visible");
+  dogFoodView.classList.remove("hidden");
+});
+
+//Make cat food visible and hide dog food
+var catFoodLink = document.getElementById("link-cat");
+var catFoodView = document.getElementById("cat-view");
+
+catFoodLink.addEventListener("click", function(event) {
+  event.preventDefault();
+  catFoodView.classList.add("hidden");
+  dogFoodView.classList.add("hidden");
+
+  catFoodView.classList.add("visible");
+  catFoodView.classList.remove("hidden");
+})
+
+
+
+
+
+
+
+
