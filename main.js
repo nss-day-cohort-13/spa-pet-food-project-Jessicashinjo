@@ -27,19 +27,22 @@ myRequest.send();
 //Insert Dog Food cards into DOM
 function insertCardInfoToDomDog (bubbles) {
   var placeholderDiv = document.getElementById("mainBody");
+  var sum = " ";
   for (var i = 0; i < bubbles.length; i++) {
-    placeholderDiv.innerHTML += "<article class=\"card\"> <h3 class=\"brand\">" + bubbles[i].name +
+    sum += "<article class=\"card\"> <h3 class=\"brand\">" + bubbles[i].name +
     "</h3>";
     for (var j = 0; j < bubbles[i].types.length; j++) {
-      placeholderDiv.innerHTML += "<section class=\"type\"> <h5>Food type:</h5> <p>" +
-      bubbles[j].types[j].type + "</p> </section>";
-        for (var k = 0; k < bubbles[i].types.length; k++) {
-          placeholderDiv.innerHTML += "<section id=\"volPrice\"> <p class=\"volume\">" +
-          bubbles[k].types[k].volumes[k].name + "</p> <p class=\"price\">" +
-          bubbles[k].types[k].volumes[k].price + "</p> </section> </article>";
+      sum += "<section class=\"type\"> <h5>Food type:</h5> <p>" +
+      bubbles[i].types[j].type + "</p> </section>";
+        for (var k = 0; k < bubbles[i].types[j].volumes.length; k++) {
+          sum += "<section id=\"volPrice\"> <p class=\"volume\">Size: " +
+          bubbles[i].types[j].volumes[k].name + "</p> <p class=\"price\">Price: " +
+          bubbles[i].types[j].volumes[k].price + "</p> </section>";
         }
     }
+    sum += "</article>";
   }
+  placeholderDiv.innerHTML = sum;
 }
 
 // **************************************
@@ -70,24 +73,28 @@ myCatRequest.send();
 //Insert Cat Food cards into DOM
 function insertCardInfoToDomCat (bubbles) {
   var placeholderDiv = document.getElementById("mainCatBody");
+  var sum = " ";
   for (var i = 0; i < bubbles.length; i++) {
-    placeholderDiv.innerHTML += "<article class=\"card\"> <h3 class=\"brand\">" + bubbles[i].name +
+    sum += "<article class=\"card\"> <h3 class=\"brand\">" + bubbles[i].name +
     "</h3>";
-      for (var h = 0; h < bubbles.length; h++) {
-        placeholderDiv.innerHTML += "<section class=\"breeds\">" +
-        "<h5>Specially designed for these breeds:</h5> <p>" + bubbles[h].breeds +
-        "</p> </section>";
+      sum += "<section class=\"breeds\">" + "<h5>Specially designed for these breeds:</h5> <p>"
+      for (var h = 0; h < bubbles[i].breeds.length; h++) {
+        sum += `${bubbles[i].breeds[h]} `;
       }
-    for (var j = 0; j < bubbles[i].types.length; j++) {
-      placeholderDiv.innerHTML += "<section class=\"type\"> <h5>Food type:</h5> <p>" +
-      bubbles[j].types[j].type + "</p> </section>";
-        for (var k = 0; k < bubbles[i].types.length; k++) {
-          placeholderDiv.innerHTML += "<section id=\"volPrice\"> <p class=\"volume\">" +
-          bubbles[k].types[k].volumes[k].name + "</p> <p class=\"price\">" +
-          bubbles[k].types[k].volumes[k].price + "</p> </section> </article>";
-        }
+      sum += "</p> </section>";
+      for (var j = 0; j < bubbles[i].types.length; j++) {
+        sum += "<section class=\"type\"> <h5>Food type:</h5> <p>" +
+        bubbles[i].types[j].type + "</p> </section>";
+          for (var k = 0; k < bubbles[i].types[j].volumes.length; k++) {
+            sum += "<section id=\"volPrice\"> <p class=\"volume\">Size: " +
+            bubbles[i].types[j].volumes[k].name + "</p> <p class=\"price\">Price: " +
+            bubbles[i].types[j].volumes[k].price + "</p> </section>";
+      }
     }
+
+    sum += "</article>";
   }
+  placeholderDiv.innerHTML = sum;
 }
 
 
@@ -125,3 +132,12 @@ catFoodLink.addEventListener("click", function(event) {
 
 
 
+// var anArray = ["foo", "bar", "baz", "qux"];
+
+// for (var i = 0; i < anArray.length; i++) {
+//   anArray[i]
+// }
+
+// anArray.forEach(function(justAvarName){
+//   justAvarName
+// })
