@@ -1,30 +1,31 @@
-function executeThisCodeAfterFileIsLoaded () {
+// **************************************
+// XML events and functions for Dog food
+// **************************************
+
+//Dog Food XML functions for load and error
+function executeThisCodeAfterFileIsLoadedDog () {
   var data = JSON.parse(this.responseText);
 
-  insertCardInfoToDom(data.dog_brands);
+  insertCardInfoToDomDog(data.dog_brands);
 
 }
 
-function executeThisCodeIfXHRFails (){
+function executeThisCodeIfXHRFailsDog (){
   throw "failed to load";
 }
 
-// Create an XHR object
+//XML request for dog food
 var myRequest = new XMLHttpRequest();
 
-// XHR objects emit events when their operation is complete, or an error occurs`
-myRequest.addEventListener("load", executeThisCodeAfterFileIsLoaded);
-myRequest.addEventListener("error", executeThisCodeIfXHRFails);
+myRequest.addEventListener("load", executeThisCodeAfterFileIsLoadedDog);
+myRequest.addEventListener("error", executeThisCodeIfXHRFailsDog);
 
-// Then tell the XHR object exactly what to do
 myRequest.open("GET", "dogFood.json");
-
-// Tell the XHR object to start
 myRequest.send();
 
 
 //Insert Dog Food cards into DOM
-function insertCardInfoToDom (bubbles) {
+function insertCardInfoToDomDog (bubbles) {
   var placeholderDiv = document.getElementById("mainBody");
   for (var i = 0; i < bubbles.length; i++) {
     placeholderDiv.innerHTML += "<article class=\"card\"> <h3 class=\"brand\">" + bubbles[i].name +
@@ -40,6 +41,55 @@ function insertCardInfoToDom (bubbles) {
     }
   }
 }
+
+// **************************************
+// XML events and functions for Cat food
+// **************************************
+
+//Cat Food XML functions for load and error
+function executeThisCodeAfterFileIsLoadedCat () {
+  var data = JSON.parse(this.responseText);
+
+  insertCardInfoToDomCat(data.cat_brands);
+  console.log(data.cat_brands);
+}
+
+function executeThisCodeIfXHRFailsCat (){
+  throw "failed to load";
+}
+
+//XML request for dog food
+var myCatRequest = new XMLHttpRequest();
+
+myCatRequest.addEventListener("load", executeThisCodeAfterFileIsLoadedCat);
+myCatRequest.addEventListener("error", executeThisCodeIfXHRFailsCat);
+
+myCatRequest.open("GET", "catFood.json");
+myCatRequest.send();
+
+//Insert Cat Food cards into DOM
+function insertCardInfoToDomCat (bubbles) {
+  var placeholderDiv = document.getElementById("mainCatBody");
+  for (var i = 0; i < bubbles.length; i++) {
+    placeholderDiv.innerHTML += "<article class=\"card\"> <h3 class=\"brand\">" + bubbles[i].name +
+    "</h3>";
+      for (var h = 0; h < bubbles.length; h++) {
+        placeholderDiv.innerHTML += "<section class=\"breeds\">" +
+        "<h5>Specially designed for these breeds:</h5> <p>" + bubbles[h].breeds +
+        "</p> </section>";
+      }
+    for (var j = 0; j < bubbles[i].types.length; j++) {
+      placeholderDiv.innerHTML += "<section class=\"type\"> <h5>Food type:</h5> <p>" +
+      bubbles[j].types[j].type + "</p> </section>";
+        for (var k = 0; k < bubbles[i].types.length; k++) {
+          placeholderDiv.innerHTML += "<section id=\"volPrice\"> <p class=\"volume\">" +
+          bubbles[k].types[k].volumes[k].name + "</p> <p class=\"price\">" +
+          bubbles[k].types[k].volumes[k].price + "</p> </section> </article>";
+        }
+    }
+  }
+}
+
 
 //Make dog food visible and hide cat food
 var dogFoodLink = document.getElementById("link-dog");

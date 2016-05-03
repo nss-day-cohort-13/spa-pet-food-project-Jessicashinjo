@@ -1,9 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/*******************
+Nav Bar
+*******************/
 ul > li {
   display: inline;
   list-style-type: none;
   margin: 5px 15px 0 15px;
   background-color: goldenrod;
   padding: 5px;
+  font-family: 'Jura', sans-serif;
+  font-size: 1.3em;
+}
+
+#navBar {
+  background-color: #337ab7;
+  margin-top: 0;
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+#link_cat {
+  background-color: #337ab7;
+}
+
+.nav-pills>li>a {
+  background-color: #337ab7;
+  color: #fff;
 }
 
 .visible {
@@ -14,7 +46,19 @@ ul > li {
   display: none;
 }
 
-body {
-  font-size: 2em;
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  margin-top: 0;
+  padding-top: 15px;
+  text-shadow: 2px 2px goldenrod;
+  text-align: center;
 }
 
+h1 small {
+  color: #fff;
+  text-shadow: none;
+}
+
+.nav-pills li {
+  text-align: center;
+}
